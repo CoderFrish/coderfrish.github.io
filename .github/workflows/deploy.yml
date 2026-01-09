@@ -1,0 +1,35 @@
+name: Deploy CI
+
+on:
+  push:
+    paths:
+      - "**/*.md"
+      - "package.json"
+      - '.github/workflows/deploy.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 21
+
+      - name: Install dependencies
+        run: |
+          npm install --frozen-lockfile
+          npm install -g hexo
+
+      - name: Build project
+        run: hexo generate
+
+      - name: Deploy to Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: public/
+          force_orphan: true
