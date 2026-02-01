@@ -63,6 +63,13 @@ index_generator:
   per_page: 10
   order_by: -date
 
+markdown:
+  plugins:
+    - name: '@renbaoshuo/markdown-it-katex'
+      options:
+        skipDelimitersCheck: true
+
+
 # Category & Tag
 default_category: uncategorized
 category_map:
