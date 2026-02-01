@@ -5,6 +5,8 @@ on:
     paths:
       - "**/*.md"
       - "package.json"
+      - "_config.yml"
+      - "_config.hydrogen.yml"
       - '.github/workflows/deploy.yml'
 
 jobs:
